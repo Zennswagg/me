@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I love you</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fecfef);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .heart, .sparkle, .particle {
+      pointer-events: none;
+      position: absolute;
+    }
+
+    .heart {
+      color: #ff69b4;
+      font-size: 20px;
+      animation: float 6s ease-in-out infinite;
+      opacity: 0.7;
+    }
+
+    .sparkle {
+      color: #ffd700;
+      font-size: 12px;
+      animation: sparkle 2s linear infinite;
+    }
+
+    .particle {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      animation: particleFloat 8s linear infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+      50% { transform: translateY(-30px) rotate(10deg); opacity: 1; }
+      100% { transform: translateY(0) rotate(-10deg); opacity: 0.7; }
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes particleFloat {
+      0% { transform: translateY(0) scale(0); opacity: 0; }
+      10% { opacity: 0.6; transform: scale(1); }
+      90% { opacity: 0.6; }
+      100% { transform: translateY(-400px) translateX(100px) scale(0); opacity: 0; }
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .header {
+      margin-bottom: 30px;
+      animation: fadeInDown 1.5s ease-out;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      color: #8b0000;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      font-family: 'Playfair Display', serif;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .subtitle {
+      font-style: italic;
+      color: #4a4a4a;
+      font-size: 1.2rem;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 2px 2px 4px rgba(0,0,0,0.1), 0 0 10px #ff69b4; }
+      to { text-shadow: 2px 2px 4px rgba(0,0,0,0.1), 0 0 20px #ff1493, 0 0 30px #ff1493; }
+    }
+
+    .flower-showcase {
+      margin: 40px 0;
+      animation: fadeIn 2s ease-out;
+    }
+
+    .tulip-image {
+      width: 200px;
+      filter: drop-shadow(0 0 10px #ff69b4);
+    }
+
+    .message-section {
+      background: #fff5f8;
+      padding: 40px 50px;
+      border-radius: 25px;
+      margin: 40px 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      animation: fadeIn 2s ease-out 1s both;
+      position: relative;
+    }
+
+    .message-section::before {
+      content: '“';
+      font-size: 5rem;
+      position: absolute;
+      left: 20px;
+      top: -20px;
+      color: #ff69b4;
+      opacity: 0.3;
+      font-family: serif;
+    }
+
+    .message {
+      font-size: 1.4rem;
+      line-height: 1.8;
+      color: #2c3e50;
+      font-style: italic;
+      border-left: 4px solid #ff69b4;
+      padding-left: 40px;
+    }
+
+    .date {
+      font-size: 1.1rem;
+      color: #e74c3c;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .photo-section {
+      margin: 40px 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .polaroid {
+      width: 180px;
+      background: white;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      padding: 8px 8px 25px;
+      border-radius: 6px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .polaroid img {
+      width: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .caption {
+      font-size: 0.85rem;
+      color: #555;
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    .polaroid.left {
+      transform: rotate(-6deg);
+    }
+
+    .polaroid.right {
+      transform: rotate(5deg);
+    }
+
+    .polaroid:hover {
+      z-index: 3;
+      transform: scale(1.05) rotate(0deg);
+    }
+
+    @media (max-width: 768px) {
+      .photo-section {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .polaroid {
+        transform: none !important;
+        width: 90%;
+        max-width: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Happy Monthsary!</h1>
+      <div class="subtitle">Celebrating another wonderful month together</div>
+    </div>
+
+    <div class="flower-showcase">
+      <img src="https://www.animatedimages.org/data/media/50/animated-flower-image-0064.gif" alt="Tulip" class="tulip-image" loading="lazy" />
+    </div>
+
+    <div class="message-section">
+      <div class="message">
+        Happy 3rd Monthsary, love.
+Salamat sa pag stay at sa pag intindi sakin lagi. Masaya ako dahil ikaw ang aking kasama. More monthsaries to come. I love youuu! 💕
+      </div>
+      <div class="date" id="monthDate"></div>
+    </div>
+
+    <div class="photo-section">
+      <div class="polaroid left">
+        <img src="Messenger_creation_D10D080B-3A5B-4BA8-87A0-873FC47849FA.jpeg" alt="Photo 1" loading="lazy">
+        <div class="caption">You & Me</div>
+      </div>
+      <div class="polaroid right">
+        <img src="Messenger_creation_530053DB-93FE-44B9-B93D-B82BFBC55AEB.jpeg" alt="Photo 2" loading="lazy">
+        <div class="caption">Our Moments</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('monthDate').textContent = 'July 25, 2025';
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerHTML = '💖';
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.top = Math.random() * 100 + '%';
+      heart.style.animationDelay = Math.random() * 6 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    function createSparkle() {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.innerHTML = '✨';
+      sparkle.style.left = Math.random() * 100 + '%';
+      sparkle.style.top = Math.random() * 100 + '%';
+      sparkle.style.animationDelay = Math.random() * 2 + 's';
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 2000);
+    }
+
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      const showcase = document.querySelector('.flower-showcase');
+      const rect = showcase.getBoundingClientRect();
+      particle.style.left = (rect.left + rect.width / 2 + (Math.random() - 0.5) * 200) + 'px';
+      particle.style.top = (rect.top + rect.height / 2 + (Math.random() - 0.5) * 200) + 'px';
+      particle.style.animationDelay = Math.random() * 8 + 's';
+      const colors = ['#ff69b4', '#ff1493', '#ffd700', '#ff6b9d', '#ff8a95'];
+      particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+      document.body.appendChild(particle);
+      setTimeout(() => particle.remove(), 8000);
+    }
+
+    // Respect user motion preferences
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setInterval(createHeart, 3000);
+      setInterval(createSparkle, 1500);
+      setInterval(createParticle, 2000);
+
+      for (let i = 0; i < 5; i++) {
+        setTimeout(createHeart, i * 600);
+        setTimeout(createSparkle, i * 400);
+        setTimeout(createParticle, i * 800);
+      }
+    }
+  </script>
+</body>
+  </html>
